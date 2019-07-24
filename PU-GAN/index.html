@@ -175,7 +175,10 @@
 			  <tr>
 	  	              <td align="center" width=800px">
 	  					<center>
-				          	<span style="font-size:18px"><sup>3</sup>Shenzhen Key Laboratory of Virtual Reality and Human Interaction Technology, Shenzhen Institutes of Advanced Technology, Chinese Academy of Sciences, China</span>
+							  <span style="font-size:18px"><sup>3</sup>
+								Guangdong Provincial Key Laboratory of Computer Vision and Virtual Reality Technology, 
+								Shenzhen Institutes of Advanced Technology, Chinese Academy of Sciences, China
+							</span>
 		  		  		</center>
 		  	      </td>
 			  </tr>
@@ -195,11 +198,11 @@
 	  						<span style="font-size:22px">Code <a href="https://github.com/liruihui/PU-GAN"> [GitHub]</a></span>
 		  		  		</center>
 		  		  	  </td>
-	  	              <!-- <td align="center" width="225px">
+	  	              <td align="center" width="225px">
 	  					<center>
-	  						<span style="font-size:22px">ICCV 2019<a href="https://arxiv.org/abs/1807.06010"> [Paper]</a></span>
+	  						<span style="font-size:22px">ICCV 2019<a href="https://arxiv.org/abs/XXX"> [Paper]</a></span>
 		  		  		</center>
-		  		  	  </td> -->
+		  		  	  </td>
 	  	              <td align="center" width="275px">
 	  					<center>
 				          	<span style="font-size:18px"></span>
@@ -213,7 +216,7 @@
   			  <tbody><tr>
   	              <td width="400px">
   					<center>
-  	                	<img class="rounded" src="./figures/teaser_one_column_high.png" width="900px">
+  	                	<img class="rounded" src="./figures/teaser_one_column_high.png" width="1000px">
   	                	<br>
 					</center>
   	              </td>
@@ -224,39 +227,43 @@
 		  <hr>
 
   		  <center><h1>Abstract</h1></center>
-					Point clouds are a simple and lightweight 3D representation. However, point clouds obtained from 3D scans are typically sparse, irregular, and noisy, and required to be consolidated.  In this paper, we present an <em>edge-aware</em> technique to facilitate the consolidation of point clouds. We design our network to process points grouped in local patches, and train it to learn and help consolidate points, deliberately for edges. To achieve this, we formulate a regression component to simultaneously recover 3D point coordinates and point-to-edge distances from upsampled features, and an edge-aware joint loss function to directly minimize distances from output points to surface and to edges. Compared with previous neural network based works, our consolidation is <em>edge-aware</em>. During the synthesis, our network can attend to the detected sharp edges and enable more accurate 3D reconstructions. Also, we trained our network on virtual scanned point clouds, demonstrated the performance of our method on both synthetic and real point clouds, presented various surface reconstruction results, and showed how our method outperforms the state-of-the-arts.
-
+			Point clouds acquired from range scans are often sparse, noisy, and non-uniform. This paper presents a new point cloud upsampling network called PU-GAN, which is for-
+			mulated based on a generative adversarial network (GAN), to learn a rich variety of point distributions from the latent space and upsample points over patches on object sur-
+			faces. To realize a working GAN network, we construct an up-down-up expansion unit in the generator for upsampling point features with error feedback and self-correction, and
+			formulate a self-attention unit to enhance the feature integration. Further, we design a compound loss with adversarial, uniform and reconstruction terms, to encourage the
+			discriminator to learn more latent patterns and enhance the	output point distribution uniformity. Qualitative and quantitative evaluations demonstrate the quality of our results
+			over the state-of-the-arts in terms of distribution uniformity, proximity-to-surface, and 3D reconstruction quality.
 		<br><br><hr>
 
 		<center><h1>Overview</h1></center>
   		    <table align="center" width="900px">
   			<tbody>
   			  	<tr>
-  			  		<td align="center"><img class="round" style="width:900px" src="./figures/framework.png"></td>	
+  			  		<td align="center"><img class="round" style="width:1000px" src="./figures/framework.png"></td>	
 			  	</tr>
-			  	<tr>
+			  	<!-- <tr>
 			  		<td align="center"><h3>Pipeline of EC-Net</h3></td>
-			  	</tr>
+			  	</tr> -->
 			</tbody>
 			</table>
 			
 			<br>
 
-			<table align="center" width="900px">
+			<!-- <table align="center" width="900px">
   			<tbody>
   			  	<tr>
-  			  		<td align="center"><img class="round" style="width:700px" src="./figures/prepare_patches_high.png"></td>	
+  			  		<td align="center"><img class="round" style="width:700px" src="./figures/up&down.png"></td>	
 			  	</tr>
 			  	<tr>
 			  		<td align="center"><h3>Patches Extraction</h3></td>
 			  	</tr>
 
 			</tbody>
-			</table>
+			</table> -->
 		  <br>
 
   		  <center>
-				<span style="font-size:28px"><a href="https://github.com/yulequan/EC-Net">[GitHub]</a>
+				<span style="font-size:28px"><a href="https://github.com/liruihui/PU-GAN">[GitHub]</a>
 			  <br>
 			  </span></center>
 		  <br>
@@ -268,11 +275,11 @@
 	 		
   			  <tbody><tr>
 				  <td><a href=""><img class="layered-paper-big" style="height:175px" src="./figures/paper.png"></a></td>
-				  <td><span style="font-size:12pt">Lequan Yu, Xianzhi Li, Chi-Wing Fu, <br>Daniel Cohen-Or, Pheng-Ann Heng.</span><br>
-				  <b><span style="font-size:12pt">EC-Net: an Edge-aware Point set Consolidation Network.</span></b><br>
-				  <span style="font-size:12pt">In ECCV, 2018. 
+				  <td><span style="font-size:12pt">Ruihui Li, Xianzhi Li, Chi-Wing Fu, <br>Daniel Cohen-Or, Pheng-Ann Heng.</span><br>
+				  <b><span style="font-size:12pt">PU-GAN: a Point Cloud Upsampling Adversarial Network.</span></b><br>
+				  <span style="font-size:12pt">In ICCV, 2019. 
 				  <br>
-				  <a href="https://arxiv.org/abs/1807.06010">[Arxiv]</a> <a href="../papers/ECCV18_EC-Net.pdf">[Paper]</a> <a href="../files/ECCV18_EC-Net_supp.pdf">[supp]</a>
+				  <a href="https://arxiv.org/abs/XXX">[Arxiv]</a> <a href="../papers/XXX.pdf">[Paper]</a> <a href="../files/XXX_supp.pdf">[supp]</a>
 				  </td>
   	              
               </tr>
@@ -282,77 +289,82 @@
 		  <hr>
 
 		<center><h1>Surface reconstruction results<br></h1></center>
-  		We demonstrate the quality of our method by applying it to consolidate point sets and reconstruct surfaces. Our method produces consolidated point sets and improves the surface reconstruction quality, particularly on preserving the edges.
-
+		We show point set upsampling and surface reconstruction results for various models below. Comparing the results produced by
+		(f) our method and by (c-e) others, against (b) the ground truth points that are uniformly-sampled on the original testing models, 
+		we can see that other methods tend to produce more noisy and nonuniform point sets, thus leading to more artifacts in the reconstructed surfaces. 
+		See, particularly, the blown-up views, showing that PU-GAN can produce more	fine-grained details in the upsampled results,e.g., elephant’s
+		nose (top) and tiger’s tail (bottom).
   		<br><br>
   		<table align="center" width="600px">
 			  <tbody><tr>
 				  <td><span style="font-size:24pt"><center>
-				  	<img class="paper-big" style="width:800px" src="./figures/surface_reconstruction_high.png">
+				  	<img class="paper-big" style="width:1000px" src="./figures/visualComparison.png">
   	              </center></span></td>
               </tr>
   		</tbody></table> 
   		
-  		<center>
+  		<!-- <center>
   			<br>
   			<span style="font-size:28px"><a href="./moreresult.html">[More results]</a>
 			<br>
-			</span></center>
+			</span>
+		</center> -->
 
 		<br>
 		<br>
+		
 		<hr>
 
-		<center><h1>Performance comparisons<br></h1></center>
-  		We compare our method with state-of-the-art methods on synthetic and real scanned dataset, indluding edge-aware point set resampling <a href="http://vcc.szu.edu.cn/research/2013/EAR">(EAR)</a> method, <a href="https://github.com/yulequan/PU-Net">PU-Net</a> method, Continuous projection for fast L1 reconstruction <a href="http://www.cg.tuwien.ac.at/research/publications/2014/preiner2014clop/">(CLOP)</a> method, and GMM-inspired feature-preserving point set filtering <a href="https://ieeexplore.ieee.org/document/7974776/">(GPF)</a> method.
+ 		<center><h1>Results on real scans<br></h1></center>
+		  We also apply our PU-GAN to point clouds LiDAR point clouds (downloaded from 
+		  <a href="http://www.cvlibs.net/datasets/kitti/">KITTI dataset</a>)
+		  From the first row, we can see the sparsity and non-uniformity of the inputs. Our PU-GAN can still fill
+		  some holes and output more uniform points in the results;
+		  please see the supplemental material for more results.
 
   		<br><br>
   		<table align="center" width="600px">
 			  <tbody><tr>
 				  <td><span style="font-size:24pt"><center>
-				  	<img class="paper-big" style="width:800px" src="./figures/comparison_high.png">
+				  	<img class="paper-big" style="width:1000px" src="./figures/real_scan_high.png">
   	              </center></span></td>
               </tr>
+  		</tbody></table> 
+
+  		<br>
+		  <br>
+		  
+		<hr>
+
+		<center><h1>Other Experiments<br></h1></center>
+		We also show the results of using PU-GAN to upsample point sets of increasing Gaussian noise levels, indicating the robustness 
+		of PU-GAN to noise and sparsity. Moreover, the results of upsampling input point sets of different sizes demonstrate that 
+		our method is stable even for input with only 512 points.
+  		<br><br>
+  		<table align="center" width="600px">
+			  <tbody><tr>
+				  <td><span style="font-size:24pt"><center>
+				  	<img class="paper-big" style="width:800px" src="./figures/noise.png">
+  	              </center></span></td>
+			  </tr>
+			  <tr>
+			  	<td align="center"><h3>Upsampling point sets of varying noise levels</h3></td>
+			  </tr>
   		</tbody></table> 
   		<br>
   		<table align="center" width="600px">
 			  <tbody><tr>
 				  <td><span style="font-size:24pt"><center>
-				  	<img class="paper-big" style="width:800px" src="./figures/real_scan_comparison.png">
+				  	<img class="paper-big" style="width:800px" src="./figures/diff_point_num.png">
   	              </center></span></td>
-              </tr>
+			  </tr>
+			  <tr>
+				<td align="center"><h3>Upsampling point sets of varying sizes</h3></td>
+			  </tr>
   		</tbody></table> 
   		
   		<br>
-  		Besides the above comparison, we further evaluate our method on the reconstruction benchmark models (<a href="http://www.cs.utah.edu/~bergerm/recon_bench/">Berger et al.</a>), and include a recent method for large-scale surface reconstruction (<a href="https://lmb.informatik.uni-freiburg.de/people/ummenhof/multiscalefusion/"> Ummenhofer et al.</a>). The comparison clearly shows that the reconstructions with our consolidation better preserve the sharp edges and have better visual quality even on the noisy models from the benchmark dataset with random error and systematic error.
-
-  		<br><br>
-  		<table align="center" width="600px">
-			  <tbody><tr>
-				  <td><span style="font-size:24pt"><center>
-				  	<img class="paper-big" style="width:800px" src="./figures/benchmark_low.png">
-  	              </center></span></td>
-              </tr>
-  		</tbody></table> 
-  	
-  		<br>
-  		<br>
-  		<hr>
-
- 		<center><h1>Results on real scans<br></h1></center>
-  		We also apply our method to point clouds produced from real scans downloaded from Aim@Shape and obtained from the EAR project. Real scan point clouds are often noisy and have inhomogeneous point distribution. Comparing with the input point clouds, our method is still able to generate more points near the edges and on the surface, while better preserving the sharp features. 
-
-  		<br><br>
-  		<table align="center" width="600px">
-			  <tbody><tr>
-				  <td><span style="font-size:24pt"><center>
-				  	<img class="paper-big" style="width:800px" src="./figures/real_scan_high.png">
-  	              </center></span></td>
-              </tr>
-  		</tbody></table> 
-
-  		<br>
-  		<br>
+  		
   		<hr>
 
 		  <!--
@@ -379,7 +391,10 @@
   			<tbody>
 			<tr><td width="400px"><left>
 	  		<center><h1>Acknowledgements</h1></center>
-	  		  We thank anonymous reviewers for the comments and suggestions. The work is supported by the Research Grants Council of the Hong Kong Special Administrative Region (Project no. GRF 14225616), the Shenzhen Science and Technology Program (No. JCYJ20170413162617606 and No. JCYJ20160429190300857), and the CUHK strategic recruitment fund.
+			  We thank anonymous reviewers for the valuable comments. The work is supported by the 973
+			  Program (Proj. No. 2015CB351706), the National Natural Science Foundation of China with Proj. No. U1613219, the
+			  Research Grants Council of the Hong Kong Special Administrative Region (No. CUHK 14203416 & 14201717), and
+			  the Israel Science Foundation grant 2366/16.
 			</left></td></tr>
 			</tbody></table>
 		<br>
