@@ -1,0 +1,392 @@
+<html class="gr__richzhang_github_io"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./The Unreasonable Effectiveness of Deep Networks as a Perceptual Metric_files/jsapi" type="text/javascript"></script>
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+
+<style type="text/css">
+	body {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+		font-weight:300;
+		font-size:18px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 1100px;
+	}
+	h1 {
+		font-weight:300;
+	}
+
+	.disclaimerbox {
+		background-color: #eee;
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+		padding: 20px;
+	}
+
+	video.header-vid {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+
+	img.header-img {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+
+	img.rounded {
+		border: 0px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+
+	a:link,a:visited
+	{
+		color: #1367a7;
+		text-decoration: none;
+	}
+	a:hover {
+		color: #208799;
+	}
+
+	td.dl-link {
+		height: 160px;
+		text-align: center;
+		font-size: 22px;
+	}
+
+	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+		        15px 15px 0 0px #fff, /* The fourth layer */
+		        15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+		        20px 20px 0 0px #fff, /* The fifth layer */
+		        20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+		        25px 25px 0 0px #fff, /* The fifth layer */
+		        25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+	.paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35); /* The top layer shadow */
+
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+		margin-top: 5px;
+		margin-left: 10px;
+		margin-right: 30px;
+		margin-bottom: 5px;
+	}
+
+	.vert-cent {
+		position: relative;
+	    top: 50%;
+	    transform: translateY(-50%);
+	}
+
+	hr
+	{
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	}
+</style> 
+		<title>PU-GAN: a Point Cloud Upsampling Adversarial Network</title>
+		<meta property="og:image" content="https://yulequan.github.io//ec-net/figures/teaser_one_column_high.png">
+		<meta property="og:title" content="PU-GAN: a Point Cloud Upsampling Adversarial Network. In ICCV, 2019.">
+  </head>
+
+  <body data-gr-c-s-loaded="true">
+    <br>
+          <center>
+          	<span style="font-size:34px">PU-GAN: a Point Cloud Upsampling Adversarial Network</span><br>
+	  		  
+	  		  <br>
+
+	  		  <table align="center" width="900px">
+	  			  <tbody><tr>
+	  	              <td align="center" width="150px">
+	  					<center>
+	  						<span style="font-size:22px"><a href="https://liruihui.github.io/">Ruihui Li</a><sup>*1,3</sup></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align="center" width="150px">
+	  					<center>
+	  						<span style="font-size:22px">Xianzhi Li<sup>*1</sup></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align="center" width="200px">
+	  					<center>
+	  						<span style="font-size:22px"><a href="http://www.cse.cuhk.edu.hk/~cwfu/">Chi-Wing Fu</a><sup>1,3</sup></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align="center" width="200px">
+	  					<center>
+	  						<span style="font-size:22px"><a href="http://www.cs.tau.ac.il/~dcor/">Daniel Cohen-Or</a><sup>2</sup></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align="center" width="200px">
+	  					<center>
+	  						<span style="font-size:22px"><a href="http://www.cse.cuhk.edu.hk/~pheng/">Pheng-Ann Heng</a><sup>1,3</sup></span>
+		  		  		</center>
+		  		  	  </td>
+	  			  </tr>
+			  </tbody></table>
+	  		  
+			  <table align="center" width="800px"><tbody>
+			  <tr>
+	  	              <td align="center" width="50px"></td>
+	  	              <td align="center" width="400px">
+	  					<center>
+				          	<span style="font-size:18px"><sup>1</sup>The Chinese University of Hong Kong</span>
+		  		  		</center>
+		  	      </td>
+	  	              <td align="center" width="300px">
+	  					<center>
+				          	<span style="font-size:18px"><sup>2</sup>Tel Aviv University</span>
+		  		  		</center>
+		  	      </td>
+	  	              <td align="center" width="50px"></td>
+			  </tr>
+			  </tbody></table>
+			  
+			  <table align="center" width="800px"><tbody>
+			  <tr>
+	  	              <td align="center" width=800px">
+	  					<center>
+				          	<span style="font-size:18px"><sup>3</sup>Shenzhen Key Laboratory of Virtual Reality and Human Interaction Technology, Shenzhen Institutes of Advanced Technology, Chinese Academy of Sciences, China</span>
+		  		  		</center>
+		  	      </td>
+			  </tr>
+			  </tbody></table>
+
+			  <br>
+
+	  		  <table align="center" width="1100px">
+	  			  <tbody><tr>
+	  	              <td align="center" width="275px">
+	  					<center>
+				          	<span style="font-size:18px"></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align="center" width="225px">
+	  					<center>
+	  						<span style="font-size:22px">Code <a href="https://github.com/yulequan/EC-Net"> [GitHub]</a></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align="center" width="225px">
+	  					<center>
+	  						<span style="font-size:22px">ECCV 2018<a href="https://arxiv.org/abs/1807.06010"> [Paper]</a></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align="center" width="275px">
+	  					<center>
+				          	<span style="font-size:18px"></span>
+		  		  		</center>
+		  		  	  </td>
+			  </tr></tbody></table>
+          </center>
+
+          <br>
+  		  <table align="center" width="1100px">
+  			  <tbody><tr>
+  	              <td width="400px">
+  					<center>
+  	                	<img class="rounded" src="./figures/teaser_one_column_high.png" width="900px">
+  	                	<br>
+					</center>
+  	              </td>
+  	              </tr>
+  	              </tbody></table>
+
+  		  <br>
+		  <hr>
+
+  		  <center><h1>Abstract</h1></center>
+					Point clouds are a simple and lightweight 3D representation. However, point clouds obtained from 3D scans are typically sparse, irregular, and noisy, and required to be consolidated.  In this paper, we present an <em>edge-aware</em> technique to facilitate the consolidation of point clouds. We design our network to process points grouped in local patches, and train it to learn and help consolidate points, deliberately for edges. To achieve this, we formulate a regression component to simultaneously recover 3D point coordinates and point-to-edge distances from upsampled features, and an edge-aware joint loss function to directly minimize distances from output points to surface and to edges. Compared with previous neural network based works, our consolidation is <em>edge-aware</em>. During the synthesis, our network can attend to the detected sharp edges and enable more accurate 3D reconstructions. Also, we trained our network on virtual scanned point clouds, demonstrated the performance of our method on both synthetic and real point clouds, presented various surface reconstruction results, and showed how our method outperforms the state-of-the-arts.
+
+		<br><br><hr>
+
+		<center><h1>Overview</h1></center>
+  		    <table align="center" width="900px">
+  			<tbody>
+  			  	<tr>
+  			  		<td align="center"><img class="round" style="width:900px" src="./figures/framework.png"></td>	
+			  	</tr>
+			  	<tr>
+			  		<td align="center"><h3>Pipeline of EC-Net</h3></td>
+			  	</tr>
+			</tbody>
+			</table>
+			
+			<br>
+
+			<table align="center" width="900px">
+  			<tbody>
+  			  	<tr>
+  			  		<td align="center"><img class="round" style="width:700px" src="./figures/prepare_patches_high.png"></td>	
+			  	</tr>
+			  	<tr>
+			  		<td align="center"><h3>Patches Extraction</h3></td>
+			  	</tr>
+
+			</tbody>
+			</table>
+		  <br>
+
+  		  <center>
+				<span style="font-size:28px"><a href="https://github.com/yulequan/EC-Net">[GitHub]</a>
+			  <br>
+			  </span></center>
+		  <br>
+
+		  <hr>
+
+  		  <center><h1>Paper and Supplementary Material</h1></center>
+  		  <table align="center" width="500" px="">
+	 		
+  			  <tbody><tr>
+				  <td><a href=""><img class="layered-paper-big" style="height:175px" src="./figures/paper.png"></a></td>
+				  <td><span style="font-size:12pt">Lequan Yu, Xianzhi Li, Chi-Wing Fu, <br>Daniel Cohen-Or, Pheng-Ann Heng.</span><br>
+				  <b><span style="font-size:12pt">EC-Net: an Edge-aware Point set Consolidation Network.</span></b><br>
+				  <span style="font-size:12pt">In ECCV, 2018. 
+				  <br>
+				  <a href="https://arxiv.org/abs/1807.06010">[Arxiv]</a> <a href="../papers/ECCV18_EC-Net.pdf">[Paper]</a> <a href="../files/ECCV18_EC-Net_supp.pdf">[supp]</a>
+				  </td>
+  	              
+              </tr>
+  		  </tbody></table>
+		  <br><br>
+
+		  <hr>
+
+		<center><h1>Surface reconstruction results<br></h1></center>
+  		We demonstrate the quality of our method by applying it to consolidate point sets and reconstruct surfaces. Our method produces consolidated point sets and improves the surface reconstruction quality, particularly on preserving the edges.
+
+  		<br><br>
+  		<table align="center" width="600px">
+			  <tbody><tr>
+				  <td><span style="font-size:24pt"><center>
+				  	<img class="paper-big" style="width:800px" src="./figures/surface_reconstruction_high.png">
+  	              </center></span></td>
+              </tr>
+  		</tbody></table> 
+  		
+  		<center>
+  			<br>
+  			<span style="font-size:28px"><a href="./moreresult.html">[More results]</a>
+			<br>
+			</span></center>
+
+		<br>
+		<br>
+		<hr>
+
+		<center><h1>Performance comparisons<br></h1></center>
+  		We compare our method with state-of-the-art methods on synthetic and real scanned dataset, indluding edge-aware point set resampling <a href="http://vcc.szu.edu.cn/research/2013/EAR">(EAR)</a> method, <a href="https://github.com/yulequan/PU-Net">PU-Net</a> method, Continuous projection for fast L1 reconstruction <a href="http://www.cg.tuwien.ac.at/research/publications/2014/preiner2014clop/">(CLOP)</a> method, and GMM-inspired feature-preserving point set filtering <a href="https://ieeexplore.ieee.org/document/7974776/">(GPF)</a> method.
+
+  		<br><br>
+  		<table align="center" width="600px">
+			  <tbody><tr>
+				  <td><span style="font-size:24pt"><center>
+				  	<img class="paper-big" style="width:800px" src="./figures/comparison_high.png">
+  	              </center></span></td>
+              </tr>
+  		</tbody></table> 
+  		<br>
+  		<table align="center" width="600px">
+			  <tbody><tr>
+				  <td><span style="font-size:24pt"><center>
+				  	<img class="paper-big" style="width:800px" src="./figures/real_scan_comparison.png">
+  	              </center></span></td>
+              </tr>
+  		</tbody></table> 
+  		
+  		<br>
+  		Besides the above comparison, we further evaluate our method on the reconstruction benchmark models (<a href="http://www.cs.utah.edu/~bergerm/recon_bench/">Berger et al.</a>), and include a recent method for large-scale surface reconstruction (<a href="https://lmb.informatik.uni-freiburg.de/people/ummenhof/multiscalefusion/"> Ummenhofer et al.</a>). The comparison clearly shows that the reconstructions with our consolidation better preserve the sharp edges and have better visual quality even on the noisy models from the benchmark dataset with random error and systematic error.
+
+  		<br><br>
+  		<table align="center" width="600px">
+			  <tbody><tr>
+				  <td><span style="font-size:24pt"><center>
+				  	<img class="paper-big" style="width:800px" src="./figures/benchmark_low.png">
+  	              </center></span></td>
+              </tr>
+  		</tbody></table> 
+  	
+  		<br>
+  		<br>
+  		<hr>
+
+ 		<center><h1>Results on real scans<br></h1></center>
+  		We also apply our method to point clouds produced from real scans downloaded from Aim@Shape and obtained from the EAR project. Real scan point clouds are often noisy and have inhomogeneous point distribution. Comparing with the input point clouds, our method is still able to generate more points near the edges and on the surface, while better preserving the sharp features. 
+
+  		<br><br>
+  		<table align="center" width="600px">
+			  <tbody><tr>
+				  <td><span style="font-size:24pt"><center>
+				  	<img class="paper-big" style="width:800px" src="./figures/real_scan_high.png">
+  	              </center></span></td>
+              </tr>
+  		</tbody></table> 
+
+  		<br>
+  		<br>
+  		<hr>
+
+		  <!--
+  		  <center><h1>Poster</h1></center><table align="center" width="200" px="">
+	 		
+  			  <tbody><tr>
+				  <td><a href="https://richzhang.github.io/PerceptualSimilarity/index_files/poster_cvpr.pdf"><img class="paper-big" style="width:600px" src="./The Unreasonable Effectiveness of Deep Networks as a Perceptual Metric_files/poster_teaser.png"></a></td>
+              </tr>
+  		  </tbody></table>
+		  <br>
+
+		  <table align="center" width="600px">
+			  <tbody><tr>
+				  <td><span style="font-size:24pt"><center>
+				  	<a href="https://richzhang.github.io/PerceptualSimilarity/index_files/poster_cvpr.pdf">[PDF]</a>
+  	              </center></span></td>
+              </tr>
+  		  </tbody></table>
+
+  		  <br>
+		  <hr>
+		-->
+  		  <table align="center" width="1100px">
+  			<tbody>
+			<tr><td width="400px"><left>
+	  		<center><h1>Acknowledgements</h1></center>
+	  		  We thank anonymous reviewers for the comments and suggestions. The work is supported by the Research Grants Council of the Hong Kong Special Administrative Region (Project no. GRF 14225616), the Shenzhen Science and Technology Program (No. JCYJ20170413162617606 and No. JCYJ20160429190300857), and the CUHK strategic recruitment fund.
+			</left></td></tr>
+			</tbody></table>
+		<br>
+		<br>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+</body></html>
