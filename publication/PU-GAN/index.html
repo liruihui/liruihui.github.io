@@ -1,0 +1,407 @@
+<html class="gr__richzhang_github_io"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./The Unreasonable Effectiveness of Deep Networks as a Perceptual Metric_files/jsapi" type="text/javascript"></script>
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+
+<style type="text/css">
+	body {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+		font-weight:300;
+		font-size:18px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 1100px;
+	}
+	h1 {
+		font-weight:300;
+	}
+
+	.disclaimerbox {
+		background-color: #eee;
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+		padding: 20px;
+	}
+
+	video.header-vid {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+
+	img.header-img {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+
+	img.rounded {
+		border: 0px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+
+	a:link,a:visited
+	{
+		color: #1367a7;
+		text-decoration: none;
+	}
+	a:hover {
+		color: #208799;
+	}
+
+	td.dl-link {
+		height: 160px;
+		text-align: center;
+		font-size: 22px;
+	}
+
+	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+		        15px 15px 0 0px #fff, /* The fourth layer */
+		        15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+		        20px 20px 0 0px #fff, /* The fifth layer */
+		        20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+		        25px 25px 0 0px #fff, /* The fifth layer */
+		        25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+	.paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35); /* The top layer shadow */
+
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+		margin-top: 5px;
+		margin-left: 10px;
+		margin-right: 30px;
+		margin-bottom: 5px;
+	}
+
+	.vert-cent {
+		position: relative;
+	    top: 50%;
+	    transform: translateY(-50%);
+	}
+
+	hr
+	{
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	}
+</style> 
+		<title>PU-GAN: a Point Cloud Upsampling Adversarial Network</title>
+		<!-- <meta property="og:image" content="https://yulequan.github.io//ec-net/figures/teaser_one_column_high.png">
+		<meta property="og:title" content="PU-GAN: a Point Cloud Upsampling Adversarial Network. In ICCV, 2019."> -->
+  </head>
+
+  <body data-gr-c-s-loaded="true">
+    <br>
+          <center>
+          	<span style="font-size:34px">PU-GAN: a Point Cloud Upsampling Adversarial Network</span><br>
+	  		  
+	  		  <br>
+
+	  		  <table align="center" width="900px">
+	  			  <tbody><tr>
+	  	              <td align="center" width="150px">
+	  					<center>
+	  						<span style="font-size:22px"><a href="https://liruihui.github.io/">Ruihui Li</a><sup>1</sup></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align="center" width="150px">
+	  					<center>
+	  						<span style="font-size:22px">Xianzhi Li<sup>1,3</sup></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align="center" width="200px">
+	  					<center>
+	  						<span style="font-size:22px"><a href="http://www.cse.cuhk.edu.hk/~cwfu/">Chi-Wing Fu</a><sup>1,3</sup></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align="center" width="200px">
+	  					<center>
+	  						<span style="font-size:22px"><a href="http://www.cs.tau.ac.il/~dcor/">Daniel Cohen-Or</a><sup>2</sup></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align="center" width="200px">
+	  					<center>
+	  						<span style="font-size:22px"><a href="http://www.cse.cuhk.edu.hk/~pheng/">Pheng-Ann Heng</a><sup>1,3</sup></span>
+		  		  		</center>
+		  		  	  </td>
+	  			  </tr>
+			  </tbody></table>
+	  		  
+			  <table align="center" width="800px"><tbody>
+			  <tr>
+	  	              <td align="center" width="50px"></td>
+	  	              <td align="center" width="400px">
+	  					<center>
+				          	<span style="font-size:18px"><sup>1</sup>The Chinese University of Hong Kong</span>
+		  		  		</center>
+		  	      </td>
+	  	              <td align="center" width="300px">
+	  					<center>
+				          	<span style="font-size:18px"><sup>2</sup>Tel Aviv University</span>
+		  		  		</center>
+		  	      </td>
+	  	              <td align="center" width="50px"></td>
+			  </tr>
+			  </tbody></table>
+			  
+			  <table align="center" width="800px"><tbody>
+			  <tr>
+	  	              <td align="center" width=800px">
+	  					<center>
+							  <span style="font-size:18px"><sup>3</sup>
+								Guangdong Provincial Key Laboratory of Computer Vision and Virtual Reality Technology, 
+								Shenzhen Institutes of Advanced Technology, Chinese Academy of Sciences, China
+							</span>
+		  		  		</center>
+		  	      </td>
+			  </tr>
+			  </tbody></table>
+
+			  <br>
+
+	  		  <table align="center" width="1100px">
+	  			  <tbody><tr>
+	  	              <td align="center" width="275px">
+	  					<center>
+				          	<span style="font-size:18px"></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align="center" width="225px">
+	  					<center>
+	  						<span style="font-size:22px">Code <a href="https://github.com/liruihui/PU-GAN"> [GitHub]</a></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align="center" width="225px">
+	  					<center>
+	  						<span style="font-size:22px">ICCV 2019<a href="https://arxiv.org/abs/XXX"> [Paper]</a></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align="center" width="275px">
+	  					<center>
+				          	<span style="font-size:18px"></span>
+		  		  		</center>
+		  		  	  </td>
+			  </tr></tbody></table>
+          </center>
+
+          <br>
+  		  <table align="center" width="1100px">
+  			  <tbody><tr>
+  	              <td width="400px">
+  					<center>
+  	                	<img class="rounded" src="./figures/teaser_one_column_high.png" width="1000px">
+  	                	<br>
+					</center>
+  	              </td>
+  	              </tr>
+  	              </tbody></table>
+
+  		  <br>
+		  <hr>
+
+  		  <center><h1>Abstract</h1></center>
+			Point clouds acquired from range scans are often sparse, noisy, and non-uniform. This paper presents a new point cloud upsampling network called PU-GAN, which is for-
+			mulated based on a generative adversarial network (GAN), to learn a rich variety of point distributions from the latent space and upsample points over patches on object sur-
+			faces. To realize a working GAN network, we construct an up-down-up expansion unit in the generator for upsampling point features with error feedback and self-correction, and
+			formulate a self-attention unit to enhance the feature integration. Further, we design a compound loss with adversarial, uniform and reconstruction terms, to encourage the
+			discriminator to learn more latent patterns and enhance the	output point distribution uniformity. Qualitative and quantitative evaluations demonstrate the quality of our results
+			over the state-of-the-arts in terms of distribution uniformity, proximity-to-surface, and 3D reconstruction quality.
+		<br><br><hr>
+
+		<center><h1>Overview</h1></center>
+  		    <table align="center" width="900px">
+  			<tbody>
+  			  	<tr>
+  			  		<td align="center"><img class="round" style="width:1000px" src="./figures/framework.png"></td>	
+			  	</tr>
+			  	<!-- <tr>
+			  		<td align="center"><h3>Pipeline of EC-Net</h3></td>
+			  	</tr> -->
+			</tbody>
+			</table>
+			
+			<br>
+
+			<!-- <table align="center" width="900px">
+  			<tbody>
+  			  	<tr>
+  			  		<td align="center"><img class="round" style="width:700px" src="./figures/up&down.png"></td>	
+			  	</tr>
+			  	<tr>
+			  		<td align="center"><h3>Patches Extraction</h3></td>
+			  	</tr>
+
+			</tbody>
+			</table> -->
+		  <br>
+
+  		  <!-- <center>
+				<span style="font-size:28px"><a href="https://github.com/liruihui/PU-GAN">[GitHub]</a>
+			  <br>
+			  </span></center>
+		  <br> -->
+
+		  <hr>
+
+  		  <center><h1>Paper and Supplementary Material</h1></center>
+  		  <table align="center" width="500" px="">
+	 		
+  			  <tbody><tr>
+				  <td><a href=""><img class="layered-paper-big" style="height:175px" src="./figures/paper.png"></a></td>
+				  <td><span style="font-size:12pt">Ruihui Li, Xianzhi Li, Chi-Wing Fu, <br>Daniel Cohen-Or, Pheng-Ann Heng.</span><br>
+				  <b><span style="font-size:12pt">PU-GAN: a Point Cloud Upsampling Adversarial Network.</span></b><br>
+				  <span style="font-size:12pt">In ICCV, 2019. 
+				  <br>
+				  <a href="https://arxiv.org/abs/XXX">[Arxiv]</a> <a href="../papers/XXX.pdf">[Paper]</a> <a href="../files/XXX_supp.pdf">[supp]</a>
+				  </td>
+  	              
+              </tr>
+  		  </tbody></table>
+		  <br><br>
+
+		  <hr>
+
+		<center><h1>Surface reconstruction results<br></h1></center>
+		We show point set upsampling and surface reconstruction results for various models below. Comparing the results produced by
+		(f) our method and by (c-e) others, against (b) the ground truth points that are uniformly-sampled on the original testing models, 
+		we can see that other methods tend to produce more noisy and nonuniform point sets, thus leading to more artifacts in the reconstructed surfaces. 
+		See, particularly, the blown-up views, showing that PU-GAN can produce more	fine-grained details in the upsampled results,e.g., elephant’s
+		nose (top) and tiger’s tail (bottom).
+  		<br><br>
+  		<table align="center" width="600px">
+			  <tbody><tr>
+				  <td><span style="font-size:24pt"><center>
+				  	<img class="paper-big" style="width:1000px" src="./figures/visualComparison.png">
+  	              </center></span></td>
+              </tr>
+  		</tbody></table> 
+  		
+  		<!-- <center>
+  			<br>
+  			<span style="font-size:28px"><a href="./moreresult.html">[More results]</a>
+			<br>
+			</span>
+		</center> -->
+
+		<br>
+		<br>
+		
+		<hr>
+
+ 		<center><h1>Results on real scans<br></h1></center>
+		  We also apply our PU-GAN to point clouds LiDAR point clouds (downloaded from 
+		  <a href="http://www.cvlibs.net/datasets/kitti/">KITTI dataset</a>)
+		  From the first row, we can see the sparsity and non-uniformity of the inputs. Our PU-GAN can still fill
+		  some holes and output more uniform points in the results;
+		  please see the supplemental material for more results.
+
+  		<br><br>
+  		<table align="center" width="600px">
+			  <tbody><tr>
+				  <td><span style="font-size:24pt"><center>
+				  	<img class="paper-big" style="width:1000px" src="./figures/real_scan_high.png">
+  	              </center></span></td>
+              </tr>
+  		</tbody></table> 
+
+  		<br>
+		  <br>
+		  
+		<hr>
+
+		<center><h1>Other Experiments<br></h1></center>
+		We also show the results of using PU-GAN to upsample point sets of increasing Gaussian noise levels, indicating the robustness 
+		of PU-GAN to noise and sparsity. Moreover, the results of upsampling input point sets of different sizes demonstrate that 
+		our method is stable even for input with only 512 points.
+  		<br><br>
+  		<table align="center" width="600px">
+			  <tbody><tr>
+				  <td><span style="font-size:24pt"><center>
+				  	<img class="paper-big" style="width:700px" src="./figures/noise.png">
+  	              </center></span></td>
+			  </tr>
+			  <tr>
+			  	<td align="center"><h3>Upsampling point sets of varying noise levels</h3></td>
+			  </tr>
+  		</tbody></table> 
+  		<br>
+  		<table align="center" width="600px">
+			  <tbody><tr>
+				  <td><span style="font-size:24pt"><center>
+				  	<img class="paper-big" style="width:700px" src="./figures/diff_point_num.png">
+  	              </center></span></td>
+			  </tr>
+			  <tr>
+				<td align="center"><h3>Upsampling point sets of varying sizes</h3></td>
+			  </tr>
+  		</tbody></table> 
+  		
+  		<br>
+  		
+  		<hr>
+
+		  <!--
+  		  <center><h1>Poster</h1></center><table align="center" width="200" px="">
+	 		
+  			  <tbody><tr>
+				  <td><a href="https://richzhang.github.io/PerceptualSimilarity/index_files/poster_cvpr.pdf"><img class="paper-big" style="width:600px" src="./The Unreasonable Effectiveness of Deep Networks as a Perceptual Metric_files/poster_teaser.png"></a></td>
+              </tr>
+  		  </tbody></table>
+		  <br>
+
+		  <table align="center" width="600px">
+			  <tbody><tr>
+				  <td><span style="font-size:24pt"><center>
+				  	<a href="https://richzhang.github.io/PerceptualSimilarity/index_files/poster_cvpr.pdf">[PDF]</a>
+  	              </center></span></td>
+              </tr>
+  		  </tbody></table>
+
+  		  <br>
+		  <hr>
+		-->
+  		  <table align="center" width="1100px">
+  			<tbody>
+			<tr><td width="400px"><left>
+	  		<center><h1>Acknowledgements</h1></center>
+			  We thank anonymous reviewers for the valuable comments. The work is supported by the 973
+			  Program (Proj. No. 2015CB351706), the National Natural Science Foundation of China with Proj. No. U1613219, the
+			  Research Grants Council of the Hong Kong Special Administrative Region (No. CUHK 14203416 & 14201717), and
+			  the Israel Science Foundation grant 2366/16.
+			</left></td></tr>
+			</tbody></table>
+		<br>
+		<br>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+</body></html>
