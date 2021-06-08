@@ -1,0 +1,85 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Shape Generation</title>
+  <!--
+  <title>SP-GAN: Sphere-Guided 3D Shape Generation and Manipulation</title>
+  -->
+  <meta name="description" content="Shape Generation and Manipulation">
+
+  <link rel="canonical" href="https://liruihui.github.io/publication/SP-GAN/">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- For all browsers -->
+  <link rel="stylesheet" href="style.css" />
+
+  <meta http-equiv="cleartype" content="on">
+</head>
+<body id="page">
+  <h1><span class="main">SP-GAN</span>: <span class="sub">Sphere-Guided 3D Shape Generation and Manipulation</span></h1>
+  <div class="authors">
+    <a href="https://liruihui.github.io/" target="_blank">Ruihui Li</a>,
+    <a href="https://nini-lxz.github.io/" target="_blank">Xianzhi Li</a>,
+    Ka-Hei Hui,
+    and <a href="http://www.cse.cuhk.edu.hk/~cwfu/" target="_blank">Chi-Wing Fu</a><br>
+    <a href="https://www.cuhk.edu.hk/english/index.html">The Chinese University of Hong Kong</a>
+  </div>
+
+  <div class="venue">
+    <a href="https://s2021.siggraph.org">SIGGRAPH 2021</a>
+  </div>
+  <img src="teaser.png" class="teaser" alt="Examples of garments knitted with our system">
+  <p class="image-caption">
+    SP-GAN not only enables the generation of diverse and realistic shapes as point clouds with fine details (see the two chairs on the left and right) but
+    also embeds a dense correspondence across the generated shapes, thus facilitating part-wise interpolation between user-selected local parts in the generated
+    shapes. Note how the left chair’s back (blue part in top arc) and the right chair’s legs (red part in bottom arc) morph in the two sequences.
+  </p>
+  <h2>Abstract</h2>
+  <p class="abstract">We present SP-GAN, a new unsupervised sphere-guided generative model for direct synthesis of 3D shapes in the form of point clouds. Compared
+    with existing models, SP-GAN is able to synthesize diverse and high-quality shapes with fine details and promote controllability for part-aware shape
+    generation and manipulation, yet trainable without any parts annotations. In SP-GAN, we incorporate a global prior (uniform points on a sphere) to
+    spatially guide the generative process and attach a local prior (a random latent code) to each sphere point to provide local details. The key insight in
+    our design is to disentangle the complex 3D shape generation task into a global shape modeling and a local structure adjustment, to ease the learning
+    process and enhance the shape generation quality. Also, our model forms an implicit dense correspondence between the sphere points and points in every
+    generated shape, enabling various forms of structure-aware shape manipulations such as part editing, part-wise shape interpolation, and multi-shape
+    part composition, etc., beyond the existing generative models. Experimental results, which include both visual and quantitative evaluations, demonstrate
+    that our model is able to synthesize diverse point clouds with fine details and less noise, as compared with the state-of-the-art models.</p>
+  <!--
+  <h2>Video</h2>
+  <video src="ks-video.mp4" controls>
+    <track label="English" kind="subtitles" srclang="en" src="ks-video.vtt" default>
+  </video>
+  -->
+
+  <h2>Video</h2>
+
+<iframe id='video_figure' src="https://www.youtube.com/embed/Da2JwUJ_4FI" allowfullscreen class="video_figure" autostart="0"></iframe>
+
+  <h2>Links</h2>
+  <ul>
+    <!-- <li><a href="./ks-paper.pdf">Paper</a> (<a>ACM</a>)</li> -->
+    <li><a>Paper</a> (<a>ACM</a>)</li>
+    <li><a href="https://github.com/liruihui/SP-GAN">Code</a></li>
+  </ul>
+  <h2>BibTeX</h2>
+<code class="bibtex"><pre>
+@article{li2021spgan,
+  title={SP-GAN:Sphere-Guided 3D Shape Generation and Manipulation},
+  author={Li, Ruihui and Li, Xianzhi and Hui, Ke-Hei and Fu, Chi-Wing},
+  journal={ACM Transactions on Graphics (Proc. SIGGRAPH)},
+  volume={40},
+  number={4},
+  year={2021},
+  publisher={ACM}
+}
+</pre>
+</code>
+  
+
+</body>
+</html>
